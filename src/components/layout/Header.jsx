@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext";
 
 function Header() {
-  const { isAuthenticated, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   return (
@@ -15,7 +13,7 @@ function Header() {
 
         <div className="collapse navbar-collapse justify-content-end">
           <ul className="navbar-nav">
-            {isAuthenticated ? (
+            {false ? (
               <>
                 <li className="nav-item">
                   <Link to="" className="nav-link">
@@ -28,7 +26,6 @@ function Header() {
                     role="button"
                     className="nav-link"
                     onClick={() => {
-                      logout();
                       navigate("/login");
                     }}
                   >

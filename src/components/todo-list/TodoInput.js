@@ -1,18 +1,14 @@
 import { useState, useContext } from "react";
 import Button from "../ui/Button";
-import { TodoContext } from "../../contexts/TodoContext";
 
 function TodoInput(props) {
   const [todoInput, setTodoInput] = useState(props.title || "");
   const [todoError, setTodoError] = useState("");
 
-  const { createTodo, updateTodo } = useContext(TodoContext);
-
   const handleClickCreateBtn = (e) => {
     if (!todoInput) {
       setTodoError("Title is required.");
     } else {
-      createTodo(todoInput);
       setTodoError("");
       setTodoInput("");
     }
@@ -26,7 +22,6 @@ function TodoInput(props) {
       //   { title: todoInput, completed: props.completed },
       //   props.id
       // );
-      updateTodo({ title: todoInput, completed: props.completed }, props.id);
       props.closeEditing();
     }
   };

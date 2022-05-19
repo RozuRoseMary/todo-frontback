@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../../config/axios";
-import { AuthContext } from "../../contexts/AuthContext";
 import { validateLogin } from "../../services/validate";
 
 function LoginForm() {
@@ -10,7 +9,6 @@ function LoginForm() {
   const [error, setError] = useState({});
   const [apiError, setApiError] = useState("");
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
@@ -27,7 +25,6 @@ function LoginForm() {
           password,
         });
         localStorage.setItem("accessToken", res.data.token);
-        login();
         navigate("/");
       } catch (err) {
         if (err.response) {
