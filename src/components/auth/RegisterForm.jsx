@@ -115,7 +115,7 @@ function RegisterForm() {
           Register
         </button>
         {apiError && (
-          <div class="alert alert-danger" role="alert">
+          <div className="alert alert-danger" role="alert">
             {apiError}
           </div>
         )}

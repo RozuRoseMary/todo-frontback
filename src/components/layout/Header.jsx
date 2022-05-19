@@ -1,8 +1,15 @@
+import axios from "axios";
 import React, { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { login, logout } from "../../stores/auth";
 
 function Header() {
+  // subscript
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  // console.log(isAuthenticated);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   return (
     <nav className="navbar navbar-expand-sm navbar-light bg-white shadow-sm">
@@ -13,7 +20,7 @@ function Header() {
 
         <div className="collapse navbar-collapse justify-content-end">
           <ul className="navbar-nav">
-            {false ? (
+            {isAuthenticated ? (
               <>
                 <li className="nav-item">
                   <Link to="" className="nav-link">
@@ -26,7 +33,7 @@ function Header() {
                     role="button"
                     className="nav-link"
                     onClick={() => {
-                      navigate("/login");
+                      dispatch(logout());
                     }}
                   >
                     Logout

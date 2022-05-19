@@ -1,14 +1,18 @@
 import { useState, useContext } from "react";
+import { useDispatch } from "react-redux";
 import Button from "../ui/Button";
+import { createTodoAsync } from "../../stores/todo";
 
 function TodoInput(props) {
   const [todoInput, setTodoInput] = useState(props.title || "");
   const [todoError, setTodoError] = useState("");
 
+  const dispatch = useDispatch();
   const handleClickCreateBtn = (e) => {
     if (!todoInput) {
       setTodoError("Title is required.");
     } else {
+      dispatch(createTodoAsync(todoInput));
       setTodoError("");
       setTodoInput("");
     }
